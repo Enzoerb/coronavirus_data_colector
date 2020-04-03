@@ -6,7 +6,7 @@ o script corona.py coleta dados de casos, mortes e recuperações do site https:
 é possivel coletar dados de um país específico ao usa-lo como argumento na execução pelo terminal
 
 ## corona_regex.py
-similar to corona.py but instad of using requests-html it uses regex
+similar ao corona.py mas ao invés de usar requests-html ele usa regex
 
 ## create_crontab.py
 o script create_crontab.py cria uma tarefa no linux que irá executar o script corona.py a cada 20 minutos
