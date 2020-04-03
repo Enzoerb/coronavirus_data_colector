@@ -5,7 +5,7 @@ import sys
 import getpass
 
 
-def check_venv(arguments):
+def check_venv(arguments, actual_path):
     if len(arguments) >= 2:
         if arguments[1] == 'local':
             return os.path.join(actual_path, 'venv/bin/python3')
@@ -17,7 +17,7 @@ username = getpass.getuser()
 actual_path = os.getcwd()
 python_file_path = os.path.join(actual_path, 'corona.py')
 
-venv_python_path = check_venv(sys.argv)
+venv_python_path = check_venv(sys.argv, actual_path)
 
 cron_command = f'{venv_python_path} {python_file_path}'
 
