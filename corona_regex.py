@@ -73,7 +73,12 @@ if __name__ == '__main__':
     Info.update_recoveries(html)
 
     local_path = os.path.dirname(os.path.realpath(__file__))
-    csv_path = os.path.join(local_path, 'corona.csv')
+    if not os.path.exists(os.path.join(local_path, 'csv_data')):
+        os.mkdir('csv_data')
+
+    csv_path = os.path.join(local_path, 'csv_data/corona.csv')
+    location_csv_path = os.path.join(local_path, f'csv_data/corona_{location}.csv')
     Info.to_csv(csv_path)
+    Info.to_csv(location_csv_path)
     if sys.stdin.isatty():
         print(f'{Info.cases};{Info.deaths};{Info.recoveries}')
