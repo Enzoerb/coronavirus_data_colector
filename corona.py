@@ -8,17 +8,12 @@ import os
 
 class Corona_Info:
 
-    def __init__(self):
+    def __init__(self, location):
         self.date = datetime.now().strftime('%Y/%m/%d %H:%M')
+        self.location = location
         self.cases = 0
         self.deaths = 0
         self.recoveries = 0
-
-    @property
-    def location(self):
-        if len(sys.argv) == 2:
-            return sys.argv[1].lower()
-        return 'world'
 
     @property
     def site_link(self):
@@ -67,12 +62,16 @@ class Corona_Info:
 
 
 if __name__ == '__main__':
-    Info = Corona_Info()
+    location = sys.argv[1].lower() if len(sys.argv) == 2 else 'world'
+    Info = Corona_Info(location)
+
     html = Info.get_html()
     Info.update_cases(html)
     Info.update_deaths(html)
     Info.update_recoveries(html)
+
     local_path = os.path.dirname(os.path.realpath(__file__))
     csv_path = os.path.join(local_path, 'corona.csv')
     Info.to_csv(csv_path)
-    print(f'{Info.cases};{Info.deaths};{Info.recoveries}')
+    if sys.stdin.isatty():
+        print(f'{Info.cases};{Info.deaths};{Info.recoveries}')
