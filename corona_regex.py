@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     local_path = os.path.dirname(os.path.realpath(__file__))
     if not os.path.exists(os.path.join(local_path, 'csv_data')):
-        os.mkdir('csv_data')
+        os.mkdir(os.path.join(local_path, 'csv_data'))
 
     csv_path = os.path.join(local_path, 'csv_data/corona.csv')
     location_csv_path = os.path.join(local_path, f'csv_data/corona_{location}.csv')
